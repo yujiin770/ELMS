@@ -1,14 +1,14 @@
 <div class="container-fluid login-container">
     <div class="card login-card">
         <div class="row g-0">
-            <!-- Left Info Panel (Changed to col-md-6) -->
+            <!-- Left Info Panel -->
             <div class="col-md-6 info-panel">
                 <h1>Hello There!</h1>
                 <p>Did you forgot your password?</p>
                 <a href="#" class="btn btn-outline-light" id="flip-to-forgot-btn">Forgot Password</a>
             </div>
 
-            <!-- Right Form Panel (Changed to col-md-6) -->
+            <!-- Right Form Panel -->
             <div class="col-md-6 form-panel">
                 <div class="form-body">
                     <h2>SIGN IN</h2>

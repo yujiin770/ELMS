@@ -1,4 +1,4 @@
-FOLDER STRUCTURED
+FOLDER STRUCTURED DESCRIPTION AND INSTRUCTION
 
 elms/
 ├── public/               <-- WEB ROOT. All requests and assets are served from here.
@@ -29,7 +29,7 @@ elms/
 │           ├── forgot-password.php    <-- forgot password form.
 │           └── login.php              <-- login form.
 │
-├── vendor/               <-- Third-party libraries managed by Composer (if any).
+├── vendor/               <-- Third-party libraries managed by Composer (IMPORT excel etc.).
 ├── .env                  <-- Environment variables (database credentials, API keys).
 ├── composer.json         <-- Defines project dependencies for Composer.
 └── readme.md             <-- This file.

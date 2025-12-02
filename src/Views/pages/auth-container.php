@@ -16,7 +16,7 @@
 
             
 
-            <!-- Forgot Password Info (This is shown for all forgot password steps) -->
+            <!-- Forgot Password Info (This is shown for all forgot password) -->
             <div id="forgot-info" class="auth-content">
                <div class="school-branding">
                     <img src="<?php echo BASE_URL; ?>assets/images/dcsa-logo2.png" alt="School Logo" class="school-logo">

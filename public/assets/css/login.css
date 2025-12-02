@@ -1,9 +1,10 @@
 :root {
     --primary-color: #941b1d;
-    --background-color: #e9ecef;
+    --background-color: #ffffff;
     --form-bg-color: #f0f0f0;
     --card-bg-color: #ffffff;
     --text-light: #ffffff;
+    --animation-speed: 0.7s;
 }
 
 body {
@@ -21,113 +22,100 @@ body {
 }
 
 .login-card {
-    max-width: 1200px;
+    max-width: 1400px;
     width: 100%;
+    min-height: 600px;
     border-radius: 1.5rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(0.5, 0.5, 0.5, 0.5);
+    position: relative;
     overflow: hidden;
-}
-
-.login-card .row {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: var(--card-bg-color);
 }
 
 .login-card .info-panel,
 .login-card .form-panel {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
     padding: 3rem 2.5rem;
     display: grid;
     place-items: center;
-    min-height: 600px;
-    transition: background-color 0.7s ease-in-out, color 0.7s ease-in-out, border-radius 0.7s ease-in-out;
+    transition: transform var(--animation-speed) ease-in-out, border-radius var(--animation-speed) ease-in-out;
 }
 
+/* --- (Sign In View) --- */
+.login-card .info-panel {
+    left: 0;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-radius: 1.5rem 5rem 5rem 1.5rem;
+    z-index: 10;
+}
+.login-card .form-panel {
+    left: 50%;
+    background-color: var(--card-bg-color);
+}
+
+/* --- Swapped Positions (Forgot Password View) --- */
+.login-card.is-swapped .info-panel {
+    transform: translateX(100%);
+    border-radius: 5rem 1.5rem 1.5rem 5rem;
+}
+.login-card.is-swapped .form-panel {
+    transform: translateX(-100%);
+    z-index: 20;
+}
+
+/* --- Content Fading (Inside the sliding panels) --- */
 .auth-content {
     grid-area: 1 / 1;
     width: 100%;
     max-width: 380px;
     text-align: center;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    transition: opacity calc(var(--animation-speed) / 2) ease-in-out;
     pointer-events: none;
 }
 .auth-content.content-visible {
     opacity: 1;
-    transform: translateY(0);
     pointer-events: auto;
 }
 
-/* --- (SIGN IN) --- */
-.login-card .info-panel {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border-radius: 1.5rem 5rem 5rem 1.5rem;
-}
-.login-card .form-panel {
-    background-color: transparent;
-}
-
-/* --- (FORGOT PASSWORD) --- */
-.login-card.is-swapped .row {
-    flex-direction: row-reverse;
-}
-.login-card.is-swapped .info-panel {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border-radius: 5rem 1.5rem 1.5rem 5rem;
-}
-.login-card.is-swapped .form-panel {
-    background-color: transparent;
-}
-
-.school-branding {
+/* --- School Branding --- */
+.school-branding { 
     margin-bottom: 2rem; 
 }
-.school-logo {
+.school-logo { 
     max-width: 120px; 
-    height: auto;
-    margin-bottom: 1rem;
+    height: auto; 
+    margin-bottom: 1rem; 
 }
-.school-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-light);
-    margin: 0;
+.school-name { 
+    font-size: 1.1rem; 
+    font-weight: 600; 
+    color: var(--text-light); 
+    margin: 0; 
 }
-
 
 /* --- Colors for Text and Buttons --- */
-.login-card .form-panel h2, .login-card .form-panel .form-label, .helper-text { 
+.form-panel h2, .form-panel .form-label, .helper-text { 
     color: var(--primary-color); 
 }
-.login-card .form-panel .btn-primary { 
+.form-panel .btn-primary { 
     background-color: var(--primary-color); 
     border-color: var(--primary-color); 
     color: var(--text-light); 
 }
-.login-card .info-panel .btn-outline-light { 
+.info-panel .btn-outline-light { 
     color: var(--text-light); 
     border-color: var(--text-light); 
 }
-.login-card .info-panel .btn-outline-light:hover { 
+.info-panel .btn-outline-light:hover { 
     background-color: var(--text-light); 
-    color: var(--primary-color); 
-}
-.login-card.is-swapped .info-panel .btn-outline-light { 
-    color: var(--card-bg-color); 
-    border-color: var(--card-bg-color); 
-}
-.login-card.is-swapped .info-panel .btn-outline-light:hover { 
-    background-color: var(--card-bg-color); 
-    color: var(--primary-color); 
-}
+    color: var(--primary-color); }
 
 /* --- General Form Styling --- */
-.auth-content form { 
-    text-align: left; 
-}
+.auth-content form { text-align: left; }
 h1 { 
     font-weight: 700; 
     font-size: 2.8rem; 
@@ -137,16 +125,17 @@ h2 {
     font-weight: 700; 
     font-size: 2.2rem; 
     margin-bottom: 2rem; 
-    text-align: left; }
+    text-align: left; 
+}
 p { 
     font-size: 1rem; 
-    margin-bottom: 
-    1.5rem; 
+    margin-bottom: 1.5rem; 
 }
 .btn { 
     border-radius: 0.5rem; 
-    padding: 0.6rem 2rem; 
-    font-weight: 600; }
+    padding: 0.6rem 1.5rem; 
+    font-weight: 600; 
+}
 .input-group { 
     border-radius: 0.75rem; 
     background-color: var(--form-bg-color); 
@@ -164,47 +153,46 @@ p {
 }
 .footer-text { 
     font-size: 0.75rem; 
-    color: #888; 
+    color: var(--primary-color); 
     margin-top: 2rem; 
-    text-align: center; }
+    text-align: center; 
+}
 .helper-text { 
     text-align: right; 
     margin-top: -0.75rem; 
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem; 
+}
 
-/* --- Responsive Styles for All Devices --- */
+/* --- Responsive Styles  --- */
 @media (max-width: 767.98px) {
     .login-container { 
         padding: 0; 
     }
     .login-card { 
-        min-height: 100vh; 
+        min-height: 100vh;
         max-width: 100%; 
         border-radius: 0; 
     }
-    .login-card .info-panel, .login-card .form-panel { 
-        min-height: auto; 
-        padding: 3.5rem 2rem; 
+    .login-card .info-panel, .login-card .form-panel {
+        position: relative;
+        width: 100%;
+        left: 0;
+        min-height: auto;
+        padding: 3.5rem 2rem;
+        transform: none !important;
+        border-radius: 0 !important;
     }
-    .login-card .info-panel, .login-card .form-panel, .login-card.is-swapped .info-panel, .login-card.is-swapped .form-panel { 
-        border-radius: 0 !important; 
-    }
-    .login-card.is-swapped .row { 
-        flex-direction: column !important; 
-    }
-    .login-card.is-swapped .info-panel 
-    { 
-        order: 2; 
-    }
-    .login-card.is-swapped .form-panel 
-    { 
+    .login-card.is-swapped .form-panel { 
         order: 1; 
+    }
+    .login-card.is-swapped .info-panel { 
+        order: 2; 
     }
     h1 { 
         font-size: 2.5rem; 
     }
-    h2 { 
-        font-size: 2rem; 
+    h2 { font-size: 2rem; 
     }
-    .school-logo { max-width: 100px; } 
+    .school-logo { max-width: 100px; 
+    }
 }
